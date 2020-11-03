@@ -9,6 +9,9 @@ import {
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
+// Assets
+import unl from "./assets/unl.svg";
+
 // Utilities
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -18,7 +21,7 @@ const Navbar = () => {
   return (
     <AppBar className={classes.nav} position="static">
       <Toolbar>
-        <img className={classes.icon} src="unl.svg" alt="University of Nebraska-Lincoln" />
+        <img className={classes.icon} src={unl} alt="University of Nebraska-Lincoln" />
         <Typography variant="h6">Data Modeling Assignment 4</Typography>
         <div className={classes.grow} />
         <Button 
