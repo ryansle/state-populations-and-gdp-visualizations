@@ -1,13 +1,15 @@
-import React, { useRef, useEffect } from "react";
+import React, { useEffect } from "react";
 
 // Utilities
 import * as d3 from "d3";
 
 const BarChart = ({ width, height, dataset }) => {
+  const margin = {top: 30, right: 75, bottom: 30, left: 75};
 
+  // Don't modify this, it just calls the drawGraph function on startup
   useEffect(() => {
     drawGraph();
-  }, [dataset]);
+  });
 
   const drawGraph = () => { 
     const svg = d3.select("#chart")
@@ -16,10 +18,10 @@ const BarChart = ({ width, height, dataset }) => {
       .attr("width", width)
       .style("border", "1px solid black");
 
-    // Create the x-sale
+    // Create the x-scale
     const x = d3.scaleBand()
       .domain(dataset.map(data => data.state))
-      .range([0, width])
+      .range([margin.left, width - margin.right])
       .padding(0.2);
 
     // Draw the x-scale onto the graph
@@ -31,6 +33,18 @@ const BarChart = ({ width, height, dataset }) => {
         .attr("dx", "-10px")
         .attr("dy", "-5px")
         .attr("transform", "rotate(-80)")
+
+    // Functional to this point
+    const y = d3.scaleLinear()
+      .domain([0, 39000000])
+      .rangeRound([height - margin.bottom, margin.top]);
+
+    svg.append("g")
+      .call(d3.axisLeft(y))
+      .selectAll("text")
+        .attr("font-size", "10px")
+        .style("text-anchor", "end")
+        .attr("transform", `translate(${margin.left},0)`)
   };
 
   return (

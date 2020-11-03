@@ -29,7 +29,8 @@ const Part1 = () => {
     <>
       <Typography variant="h2">Part 1 - Bar Charts</Typography>
       {loading && <Typography variant="h6">Loading...</Typography>}
-      {!loading && <BarChart width={1100} height={600} dataset={data} />}
+      {!loading && 
+        <BarChart width={1100} height={600} dataset={data} />}
     </>
   );
 };
