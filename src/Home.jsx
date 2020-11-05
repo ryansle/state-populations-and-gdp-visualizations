@@ -6,10 +6,8 @@ import {
 } from "@material-ui/core";
 
 // Utilities
-import { makeStyles } from "@material-ui/core/styles";
 
 const Home = () => {
-  const classes = useStyles();
 
   return (
     <>
@@ -18,8 +16,5 @@ const Home = () => {
   );
 };
 
-const useStyles = makeStyles(() => ({
-
-}));
 
 export default Home;
