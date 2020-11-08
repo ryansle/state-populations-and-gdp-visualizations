@@ -119,7 +119,7 @@ class BarChart extends React.Component {
     };
 
     render() {
-        document.querySelector("#chart").innerHTML = "";
+        // document.querySelector("#chart").innerHTML = "";
         this.drawGraph();
         return (
             <div>
