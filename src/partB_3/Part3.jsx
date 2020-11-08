@@ -6,8 +6,6 @@ import {
 } from "@material-ui/core";
 import ScatterPlot from "../charts/ScatterPlot";
 
-// Utilities
-
 const Part3 = () => {
   return (
     <>

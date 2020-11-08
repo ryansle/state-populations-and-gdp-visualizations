@@ -1,4 +1,6 @@
 import React from "react";
+
+// Components
 import {
   Typography
 } from "@material-ui/core";
@@ -8,7 +10,13 @@ const Part1 = () => {
   return (
     <>
       <Typography variant="h2">Part 1 - Bar Charts</Typography>
-      <BarChart width={1100} height={600} field="population" yRange={40000000} title="Population Graph"/>
+      <BarChart 
+        width={1100} 
+        height={600} 
+        field="population" 
+        yRange={40000000} 
+        title="Population Graph"
+      />
     </>
   );
 };
