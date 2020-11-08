@@ -28,13 +28,12 @@ const BarChart = ({ width, height, field, yRange }) => {
   });
 
   const drawGraph = () => {
-    const margin = {top: 75, right: 75, bottom: 75, left: 75};
+    const margin = {top: 75, right: 75, bottom: 100, left: 75};
 
     const svg = d3.select("#chart")
       .append("svg")
       .attr("height", height)
       .attr("width", width)
-      .style("border", "1px solid black")
 
     d3.tsv(dataset)
       .then(data => {
@@ -88,24 +87,24 @@ const BarChart = ({ width, height, field, yRange }) => {
           // Draw the bars onto the graph based on the given dataset
           svg
             .selectAll("rect")
-            .data(data)
+              .data(data)
               .enter()
               .append("rect")
-              .attr("class", "barChartBar")
-              .attr("x", data => x(data.state))
-              .attr("y", data => y(data.population))
-              .attr("height", data => height - y(data.population) - margin.bottom)
-              .attr("width", x.bandwidth())
-              .attr("transform", "translate(0, 0)")
-              .attr("fill", "steelblue")
-              .on("mouseenter", data => {
-                  d3.select(`#label${data.target.__data__.state.split(" ").join("")}`).style('visibility', 'visible')
-              })
-              .on("mouseleave", data => {
-                  d3.select(`#label${data.target.__data__.state.split(" ").join("")}`).style('visibility', 'hidden')
-              })
-              .append("title")
-              .text(d => d.population);
+                .attr("class", "barChartBar")
+                .attr("x", data => x(data.state))
+                .attr("y", data => y(data.population))
+                .attr("height", data => height - y(data.population) - margin.bottom)
+                .attr("width", x.bandwidth())
+                .attr("transform", "translate(0, 0)")
+                .attr("fill", "steelblue")
+                .on("mouseenter", data => {
+                    d3.select(`#label${data.target.__data__.state.split(" ").join("")}`).style('visibility', 'visible')
+                })
+                .on("mouseleave", data => {
+                    d3.select(`#label${data.target.__data__.state.split(" ").join("")}`).style('visibility', 'hidden')
+                })
+                .append("title")
+                .text(d => d.population);
 
           svg
             .selectAll()

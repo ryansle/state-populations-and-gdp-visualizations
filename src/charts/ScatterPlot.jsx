@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 
 // Utilities
 import * as d3 from "d3";
-import {event as currentEvent} from 'd3-selection';
 import dataset from "../assets/state_population_gdp.tsv";
 
 const ScatterPlot = ({ width, height }) => {
@@ -46,10 +45,11 @@ const ScatterPlot = ({ width, height }) => {
         svg.append("g")
           .call(d3.axisLeft(y))
 
-        // const tooltip = d3.select("#chart").append("div")
-        //   .attr("class", "tooltip")
-        //   .style("opacity", 0);
-        
+        var tooltip = d3.select("#chart")
+          .append("div")
+            .attr("class", "tooltip")
+            .style("opacity", 0);
+
         // Plot data
         svg.append("g")
           .selectAll("dot")
@@ -60,45 +60,27 @@ const ScatterPlot = ({ width, height }) => {
               .attr("cy", data => y(data.gdp))
               .attr("r", 5)
               .style("fill", "steelblue")
-              .on("mouseenter", data => {
-                d3.select(`#label${data.target.__data__.state.split(" ").join("")}`).style('visibility', 'visible')
-              })
-              .on("mouseleave", data => {
-                  d3.select(`#label${data.target.__data__.state.split(" ").join("")}`).style('visibility', 'hidden')
-              })
-              .append("title")
-              .text(d => d.population);
-              // .on('mouseover', function (data, i) {
-              //   d3.select(this).transition()
-              //     .duration('100')
-              //     .attr("r", 7);
-              //   tooltip.transition()
-              //     .duration(100)
-              //     .style("opacity", 1);
-              //   tooltip.html("$" + d3.format(".2f")(data.state))      
-              // })
-              // .on('mouseout', function (d, i) {
-              //     d3.select(this).transition()
-              //       .duration('200')
-              //       .attr("r", 5);
-              //     tooltip.transition()
-              //       .duration('200')
-              //       .style("opacity", 0);
-              // });
-        
-              svg
-              .selectAll()
-              .data(data)
-                .enter()
-                .append("text")
-                .style("font-size", 15)
-                .style("font-weight", 500)
-                .style('visibility', 'hidden')
-                .attr("id", data => `label${data.state.split(" ").join("")}`)
-                .attr("fill", "black")
-                .attr("x", data => x(data.state))
-                .attr("y", data => y(data.population) - 3)
-                .text(data => data.population);
+              .on('mouseover', function (d, i) {
+                d3.select(this).transition()
+                  .duration('100')
+                  .attr("r", 7)
+                  .style("fill", "red");
+                tooltip.transition()
+                  .duration(100)
+                  .style("opacity", 1);
+                tooltip.html(d3.format(".2f")(data.population))
+                  .style("left", window.pageXOffset - 30 + "px")
+                  .style("top", window.pageYOffset - 23 + "px");
+                })
+                .on('mouseout', function (d, i) {
+                  d3.select(this).transition()
+                    .duration('200')
+                    .attr("r", 5)
+                    .style("fill", "steelblue");
+                  tooltip.transition()
+                    .duration('200')
+                    .style("opacity", 0);
+                });
       })
   };
 
