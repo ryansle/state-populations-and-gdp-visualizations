@@ -1,26 +1,35 @@
 import React, { useEffect, useState } from "react";
 
+// Components
+import { Button, Typography } from "@material-ui/core";
+
 // Utilities
+import { makeStyles } from "@material-ui/core";
 import * as d3 from "d3";
 import dataset from "../assets/state_population_gdp.tsv";
 import "./BarChart.css";
 
 const BarChart = ({ width, height, field, yRange }) => {
+  const classes = useStyles();
   const [alpha, setAlpha] = useState(true);
   const [ascend, setAscend] = useState(null);
+  const [selected, setSelected] = useState("Alphabetical");
 
   const toggleAlpha = () => {
-    setAlpha(!alpha);
+    setAlpha(true);
+    setSelected("Alphabetical");
   };
 
   const handleAscend = () => {
     setAlpha(false);
     setAscend(true);
+    setSelected("Ascending");
   }
 
   const handleDescend = () => {
     setAlpha(false);
     setAscend(false);
+    setSelected("Descending");
   }
 
   useEffect(() => {
@@ -122,14 +131,27 @@ const BarChart = ({ width, height, field, yRange }) => {
       })
   };
 
-    return (
-      <div>
-        <button onClick={toggleAlpha}>Alphabetical</button>
-        <button onClick={handleAscend}>Ascending</button>
-        <button onClick={handleDescend}>Descending</button>
-        <div id="chart" />
-      </div>
-    );
-}
+  return (
+    <div>
+      <Button className={classes.btn} variant="contained" onClick={toggleAlpha}>Alphabetical</Button>
+      <Button className={classes.btn} variant="contained" onClick={handleAscend}>Ascending</Button>
+      <Button className={classes.btn} variant="contained" onClick={handleDescend}>Descending</Button>
+      <br /> <br/>
+      <Typography variant="h6">Current Setting: {selected} Order</Typography>
+      {selected === "Alphabetical" && <div id="chart" />}
+      {selected === "Ascending" && <div id="chart" />}
+      {selected === "Descending" && <div id="chart" />}
+    </div>
+  );
+};
+
+const useStyles = makeStyles(() => ({
+  btn: {
+    backgroundColor: "#282C34",
+    color: "white",
+    fontWeight: "bold",
+    margin: "0px 10px 0px 10px",
+  }
+}));
 
 export default BarChart;
