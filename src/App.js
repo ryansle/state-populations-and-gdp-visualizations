@@ -1,8 +1,8 @@
 import React from "react";
 
 // Components
-import Navbar from "./Navbar";
-import Router from "./Router";
+import Navbar from "./components/Navbar";
+import Router from "./components/Router";
 
 // Utilities
 import './App.css';

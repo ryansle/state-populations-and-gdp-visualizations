@@ -10,7 +10,7 @@ import {
 import { Link } from "react-router-dom";
 
 // Assets
-import unl from "./assets/unl.svg";
+import unl from "../assets/unl.svg";
 
 // Utilities
 import { makeStyles } from "@material-ui/core/styles";

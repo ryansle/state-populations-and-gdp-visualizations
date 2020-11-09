@@ -1,10 +1,10 @@
 import React from "react";
 
 // Sections
-import Home from "./Home";
-import Part1 from "./partB_1/Part1";
-import Part2 from "./partB_2/Part2";
-import Part3 from "./partB_3/Part3";
+import Home from "../Home";
+import Part1 from "../partB_1/Part1";
+import Part2 from "../partB_2/Part2";
+import Part3 from "../partB_3/Part3";
 
 // Utilities
 import { Switch, Route } from "react-router-dom";
