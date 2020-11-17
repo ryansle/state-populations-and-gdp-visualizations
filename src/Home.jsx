@@ -23,6 +23,11 @@ const Home = () => {
           description="View our detailed report on the entirety of Assignment 4, from Apriori algorithms to d3 visualizations, and everything in between."
           link="https://docs.google.com/document/d/1sWFVsZqSb9eR0e0t-FpfBINrUsnArrtvMI_D9JzIiJM/edit"
         />
+        <NavCard
+          title="View Web App Repository"
+          description="View our feature-complete code for the web application you're currently viewing, and how we built the visualizations present on this page."
+          link="https://github.com/ryansle/state-populations-and-gdp-visualizations/tree/main/src"
+        />
         <NavCard 
           title="View Google Colab Repository"
           description="View our feature-complete code for the Apriori algorithm, and the brute-force algorithm for the frequent 3-itemsets generation problem."
