@@ -60,7 +60,7 @@ const ScatterPlot = ({ width, height }) => {
               .attr("cy", data => y(data.gdp))
               .attr("r", 5)
               .style("fill", "steelblue")
-              .on('mouseover', function (d, i) {
+              .on('mouseenter', (d, i) => {
                 d3.select(this).transition()
                   .duration('100')
                   .attr("r", 7)
@@ -68,7 +68,7 @@ const ScatterPlot = ({ width, height }) => {
                 tooltip.transition()
                   .duration(100)
                   .style("opacity", 1);
-                tooltip.html(d3.format(".2f")(data.population))
+                tooltip.html(d.target.__data__.population)
                   .style("left", window.pageXOffset - 30 + "px")
                   .style("top", window.pageYOffset - 23 + "px");
                 })
