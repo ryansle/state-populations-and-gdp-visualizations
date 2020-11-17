@@ -45,10 +45,28 @@ const ScatterPlot = ({ width, height }) => {
         svg.append("g")
           .call(d3.axisLeft(y))
 
+        // Tooltip
         var tooltip = d3.select("#chart")
           .append("div")
             .attr("class", "tooltip")
             .style("opacity", 0);
+
+        // Axis text
+        const xLabel = "Population";
+        const yLabel = "GDP";
+
+        const g = svg.append('g')
+          .attr('transform', `translate(${margin.left},${margin.top})`);
+
+        const yAxisG = g.append('g');
+
+        yAxisG.append('text')
+          .attr('class', 'axis-label')
+          .attr('x', -(width - margin.left - margin.right) / 2)
+          .attr('y', -60)
+          .attr('transform', `rotate(-90)`)
+          .style('text-anchor', 'middle')
+          .text(yLabel);
 
         // Plot data
         svg.append("g")
@@ -60,15 +78,15 @@ const ScatterPlot = ({ width, height }) => {
               .attr("cy", data => y(data.gdp))
               .attr("r", 5)
               .style("fill", "steelblue")
-              .on('mouseenter', (d, i) => {
+              .on('mouseover', function (d, i) {
                 d3.select(this).transition()
                   .duration('100')
                   .attr("r", 7)
                   .style("fill", "red");
                 tooltip.transition()
                   .duration(100)
-                  .style("opacity", 1);
-                tooltip.html(d.target.__data__.population)
+                  .style("opacity", 1)               
+                tooltip.html(`${d.target.__data__.state} Per Capita GDP: ${(d.target.__data__.gdp / d.target.__data__.population).toFixed(2)}`)
                   .style("left", window.pageXOffset - 30 + "px")
                   .style("top", window.pageYOffset - 23 + "px");
                 })
@@ -85,7 +103,12 @@ const ScatterPlot = ({ width, height }) => {
   };
 
   return (
-    <div id="chart" />
+    <>
+      <div id="chart" />
+      <div style={{textAlign: "right", marginRight: 450}}>
+        population
+      </div>
+    </>
   )
 };
 

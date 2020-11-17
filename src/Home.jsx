@@ -66,7 +66,7 @@ const Home = () => {
         <NavCard
           title="Provided Dataset"
           description="The provided dataset for both Apriori and d3 visualizations."
-          link="https://unl.app.box.com/s/y4fh4rcd8qfubjp05g6yf1i10vyob95p"
+          link="https://unl.app.box.com/s/dug7yupryqpwlhreduq87nsm4dk8bm6p"
         />
         <NavCard
           title="D3 Documenatation"
