@@ -52,7 +52,6 @@ const ScatterPlot = ({ width, height }) => {
             .style("opacity", 0);
 
         // Axis text
-        const xLabel = "Population";
         const yLabel = "GDP";
 
         const g = svg.append('g')
